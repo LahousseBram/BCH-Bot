@@ -7,6 +7,12 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+def reset_program(driver):
+    print("!!!!!!!!!!!!!\nresetting program\n!!!!!!!!!!!!!")
+    driver.close()
+    driver.quit()
+    main()
+
 def refresh_bch(driver, wait=False):
     if wait:
         time.sleep(5)
@@ -20,7 +26,7 @@ def hard_reset(driver):
     os.system("mullvad disconnect")
     time.sleep(1)
     os.system("mullvad connect")
-    time.sleep(10)
+    time.sleep(6)
     driver.execute_script("window.close()")
     driver.switch_to.window(driver.window_handles[0])
     open_bch(driver=driver)
@@ -37,14 +43,10 @@ def open_bch(driver):
 def open_dice(driver):
     try:
         WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div/div/main/div/div[1]/a[5]/div[1]'))).click()
-        time.sleep(3)
+        time.sleep(2)
         bet_dice(driver=driver)
     except:
-        time.sleep(5)
-        print("resetting program")
-        driver.close()
-        driver.quit()
-        main()
+        reset_program(driver=driver)
 
 def bet_dice(driver):
     global amount_of_bets
@@ -59,7 +61,7 @@ def bet_dice(driver):
 
     try:
         if driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div/div/main/div/div/div[1]/div/div[4]/div/div/div[2]/div/div[1]/input') == '15.00000000':
-            time.sleep(10)
+            time.sleep(5)
             current_streak = 0
             refresh_bch(driver=driver)
     except:
