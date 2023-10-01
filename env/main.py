@@ -45,7 +45,7 @@ def open_bch(driver):
 
 def open_dice(driver):
     try:
-        WebDriverWait(driver, 100).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div/div/main/div/div[1]/a[5]/div[1]'))).click()
+        WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div/div/main/div/div[1]/a[5]/div[1]'))).click()
         time.sleep(2)
         bet_dice(driver=driver)
     except:
