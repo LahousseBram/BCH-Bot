@@ -2,10 +2,13 @@ import undetected_chromedriver as uc
 
 import time
 import os
+from datetime import datetime
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
+start_time = datetime.now()
 
 def reset_program(driver):
     print("!!!!!!!!!!!!!\nresetting program\n!!!!!!!!!!!!!")
@@ -52,11 +55,12 @@ def bet_dice(driver):
     global amount_of_bets
     global current_streak
     global high_score
+    global start_time
     current_streak += 1
     amount_of_bets += 1
 
     print("==================")
-    print(f"Amount of bets: {amount_of_bets}\nCurrent streak: {current_streak}\nHigh Score: {high_score}")
+    print(f"Elapsed: {datetime.now() - start_time}\nAmount of bets: {amount_of_bets}\nCurrent streak: {current_streak}\nHigh Score: {high_score}")
     print("==================")
 
     try:
