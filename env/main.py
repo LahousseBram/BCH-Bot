@@ -12,7 +12,9 @@ from selenium.webdriver.support import expected_conditions as EC
 start_time = datetime.now()
 
 def reset_program(driver):
-    print("!!!!!!!!!!!!!\nresetting program\n!!!!!!!!!!!!!")
+    print("resetting program")
+    driver.close()
+    driver.quit()
     os.system('py main.py')
 
 def refresh_bch(driver, wait=False):
