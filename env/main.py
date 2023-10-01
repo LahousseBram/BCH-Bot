@@ -26,7 +26,6 @@ def refresh_bch(driver, wait=False):
 
 def hard_reset(driver):
     driver.execute_script("localStorage.clear()")
-    os.system("mullvad account login 7931360708700858")
     os.system("mullvad disconnect")
     time.sleep(1)
     os.system("mullvad connect")
