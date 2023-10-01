@@ -13,7 +13,7 @@ start_time = datetime.now()
 
 def reset_program(driver):
     print("!!!!!!!!!!!!!\nresetting program\n!!!!!!!!!!!!!")
-    os.system('py env/main.py')
+    os.system('py main.py')
     quit()
 
 def refresh_bch(driver, wait=False):
