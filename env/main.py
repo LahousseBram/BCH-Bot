@@ -12,10 +12,8 @@ start_time = datetime.now()
 
 def reset_program(driver):
     print("!!!!!!!!!!!!!\nresetting program\n!!!!!!!!!!!!!")
-    driver.close()
-    driver.quit()
-    time.sleep(1)
-    main()
+    os.system('python env/test.py')
+    quit()
 
 def refresh_bch(driver, wait=False):
     if wait:
