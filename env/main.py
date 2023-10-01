@@ -1,7 +1,6 @@
 import undetected_chromedriver as uc
 
 import time
-import random
 import os
 
 from selenium.webdriver.common.by import By
@@ -16,6 +15,7 @@ def refresh_bch(driver, wait=False):
     open_dice(driver=driver)
 
 def hard_reset(driver):
+    driver.execute_script("localStorage.clear()")
     os.system("mullvad account login 3556952017300720")
     os.system("mullvad disconnect")
     time.sleep(1)
@@ -41,11 +41,22 @@ def open_dice(driver):
         bet_dice(driver=driver)
     except:
         time.sleep(5)
-        print("retrying")
-        hard_reset(driver=driver)
+        print("resetting program")
+        driver.close()
+        driver.quit()
+        main()
 
 def bet_dice(driver):
-    print(choose_random_proxy())
+    global amount_of_bets
+    global current_streak
+    global high_score
+    current_streak += 1
+    amount_of_bets += 1
+
+    print("==================")
+    print(f"Amount of bets: {amount_of_bets}\nCurrent streak: {current_streak}\nHigh Score: {high_score}")
+    print("===================")
+
     try:
         if driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div/div/main/div/div/div[1]/div/div[4]/div/div/div[2]/div/div[1]/input') == '15.00000000':
             time.sleep(10)
@@ -59,10 +70,9 @@ def bet_dice(driver):
     time.sleep(2)
 
     current_money = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div[1]/header/div/a/div").get_attribute("title")
-    current_bet = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div[1]/div/div/div/main/div/div/div[1]/div/div[4]/div/div/div[2]/div/div[1]/input").get_attribute("title")
-    print(f'Current Money: {current_money}')
-    print(f'Current Bet: {current_bet}')
-    
+
+    print(current_money)
+
     if "loading" in current_money:
         hard_reset(driver=driver)
     
@@ -71,16 +81,15 @@ def bet_dice(driver):
             bet_dice(driver=driver)
         except:
             time.sleep(5)
-            refresh_bch()
+            refresh_bch(driver=driver)
     elif current_money == "0.10000000":
         while True:
             time.sleep(100000000)
     else:
+        if current_streak > high_score:
+            high_score = current_streak
+        current_streak = 0
         refresh_bch(driver=driver)
-
-def choose_random_proxy():
-    with open("proxies.txt", 'r') as file:
-        return file.readlines()[random.randrange(0, 6)]
 
 def main():
     options = uc.ChromeOptions()
@@ -90,4 +99,9 @@ def main():
     open_bch(driver)
 
 if __name__ == "__main__":
+    amount_of_bets = 0
+    current_streak = 0
+    high_score = 0
+
+
     main()
