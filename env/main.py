@@ -41,7 +41,7 @@ def open_bch(driver):
     driver.execute_script("window.open('https://bch.games','_blank')")
     time.sleep(5)
     driver.switch_to.window(driver.window_handles[1])
-    time.sleep(2)
+    time.sleep(5)
     open_dice(driver=driver)
 
 def open_dice(driver):
@@ -73,14 +73,13 @@ def bet_dice(driver):
         current_streak = 0
         refresh_bch(driver=driver)
 
+    current_money = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div[1]/header/div/a/div").get_attribute("title")
+    print(current_money)
+
     WebDriverWait(driver, 1).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div/div/main/div/div/div[1]/div/div[4]/div/div/div[3]/button[2]'))).click()
     WebDriverWait(driver, 1).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div/div/main/div/div/div[1]/div/div[4]/div/div/div[3]/button'))).click()
     WebDriverWait(driver, 1).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div/div/main/div/div/div[1]/div/div[3]/button/div[2]'))).click()
     time.sleep(2)
-
-    current_money = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div[1]/header/div/a/div").get_attribute("title")
-
-    print(current_money)
 
     if "loading" in current_money:
         current_streak = 0
