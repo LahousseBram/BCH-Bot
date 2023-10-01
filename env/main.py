@@ -14,8 +14,8 @@ def reset_program(driver):
     print("!!!!!!!!!!!!!\nresetting program\n!!!!!!!!!!!!!")
     driver.close()
     driver.quit()
-    time.sleep(1)
-    main()
+    os.system("py env/main.py")
+    exit()
 
 def refresh_bch(driver, wait=False):
     if wait:
