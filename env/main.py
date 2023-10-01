@@ -63,8 +63,6 @@ def bet_dice(driver):
     print(f"Elapsed: {datetime.now() - start_time}\nAmount of bets: {amount_of_bets}\nCurrent streak: {current_streak}\nHigh Score: {high_score}")
     print("==================")
 
-    requests.post(f"192.168.0.17:5000/add-statistic?current_streak={current_streak}&high_score={high_score}&current_bet={amount_of_bets}")
-
     try:
         if driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div/div/main/div/div/div[1]/div/div[4]/div/div/div[2]/div/div[1]/input') == '15.00000000':
             time.sleep(5)
