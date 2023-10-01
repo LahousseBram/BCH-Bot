@@ -14,6 +14,7 @@ def reset_program(driver):
     print("!!!!!!!!!!!!!\nresetting program\n!!!!!!!!!!!!!")
     driver.close()
     driver.quit()
+    time.sleep(1)
     main()
 
 def refresh_bch(driver, wait=False):
@@ -94,6 +95,7 @@ def bet_dice(driver):
             refresh_bch(driver=driver)
     elif current_money == "0.10000000":
         while True:
+            print("Goal Reached!")
             time.sleep(100000000)
     else:
         if current_streak > high_score:
@@ -112,6 +114,5 @@ if __name__ == "__main__":
     amount_of_bets = 0
     current_streak = 0
     high_score = 0
-
 
     main()
