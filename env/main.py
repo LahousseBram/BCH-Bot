@@ -60,8 +60,10 @@ def bet_dice(driver):
     try:
         if driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div/div/main/div/div/div[1]/div/div[4]/div/div/div[2]/div/div[1]/input') == '15.00000000':
             time.sleep(10)
+            current_streak = 0
             refresh_bch(driver=driver)
     except:
+        current_streak = 0
         refresh_bch(driver=driver)
 
     WebDriverWait(driver, 1).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div/div/main/div/div/div[1]/div/div[4]/div/div/div[3]/button[2]'))).click()
@@ -74,6 +76,7 @@ def bet_dice(driver):
     print(current_money)
 
     if "loading" in current_money:
+        current_streak = 0
         hard_reset(driver=driver)
     
     if current_money != "0.00000000":
@@ -81,6 +84,7 @@ def bet_dice(driver):
             bet_dice(driver=driver)
         except:
             time.sleep(5)
+            current_streak = 0
             refresh_bch(driver=driver)
     elif current_money == "0.10000000":
         while True:
