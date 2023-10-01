@@ -3,6 +3,7 @@ import undetected_chromedriver as uc
 import time
 import os
 from datetime import datetime
+import requests
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -12,7 +13,7 @@ start_time = datetime.now()
 
 def reset_program(driver):
     print("!!!!!!!!!!!!!\nresetting program\n!!!!!!!!!!!!!")
-    os.system('python env/test.py')
+    os.system('py env/test.py')
     quit()
 
 def refresh_bch(driver, wait=False):
@@ -61,6 +62,8 @@ def bet_dice(driver):
     print("==================")
     print(f"Elapsed: {datetime.now() - start_time}\nAmount of bets: {amount_of_bets}\nCurrent streak: {current_streak}\nHigh Score: {high_score}")
     print("==================")
+
+    requests.post(f"192.168.0.17:5000/add-statistic?current_streak={current_streak}&high_score={high_score}&current_bet={amount_of_bets}")
 
     try:
         if driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div/div/main/div/div/div[1]/div/div[4]/div/div/div[2]/div/div[1]/input') == '15.00000000':
