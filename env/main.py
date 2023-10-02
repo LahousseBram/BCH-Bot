@@ -14,6 +14,7 @@ start_time = datetime.now()
 
 def reset_program(driver):
     print("resetting program")
+    driver.delete_all_cookies()
     driver.close()
     driver.quit()
     os.system("py main.py")
@@ -77,6 +78,7 @@ def bet_dice(driver):
         print("test")
         refresh_bch(driver=driver)
 
+    time.sleep(1)
     WebDriverWait(driver, 1).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div/div/main/div/div/div[1]/div/div[4]/div/div/div[3]/button[2]'))).click()
     WebDriverWait(driver, 1).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div/div/main/div/div/div[1]/div/div[4]/div/div/div[3]/button'))).click()
     WebDriverWait(driver, 1).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div/div/main/div/div/div[1]/div/div[3]/button/div[2]'))).click()
