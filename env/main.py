@@ -32,8 +32,6 @@ def reset_program(driver):
     driver.delete_all_cookies()
     driver.close()
     driver.quit()
-    os.system("py main.py")
-    quit()
 
 def refresh_bch(driver, wait=False):
     if wait:
@@ -161,4 +159,5 @@ if __name__ == "__main__":
     print(art)
     load_bot_id()
 
-    main()
+    while True:
+        main()
