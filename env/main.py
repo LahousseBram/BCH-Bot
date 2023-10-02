@@ -4,6 +4,7 @@ import time
 import os
 from datetime import datetime
 import requests
+import sys
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -15,7 +16,7 @@ def reset_program(driver):
     print("resetting program")
     driver.close()
     driver.quit()
-    os.system('py main.py')
+    os.execl(sys.executable, os.path.abspath(__file__), *sys.argv)
 
 def refresh_bch(driver, wait=False):
     if wait:
