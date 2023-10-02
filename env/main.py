@@ -78,6 +78,11 @@ def bet_dice(driver):
     current_streak += 1
     amount_of_bets += 1
 
+    if current_streak == 5:
+        while True:
+            print("Goal Reached!")
+            time.sleep(100000000)
+
     print("==================")
     print(f"Elapsed: {datetime.now() - start_time}\nAmount of bets: {amount_of_bets}\nCurrent streak: {current_streak}\nHigh Score: {high_score}")
     print("==================")
@@ -123,10 +128,6 @@ def bet_dice(driver):
             time.sleep(5)
             current_streak = 0
             refresh_bch(driver=driver)
-    elif current_streak == 5:
-        while True:
-            print("Goal Reached!")
-            time.sleep(100000000)
     else:
         if current_streak > high_score:
             high_score = current_streak
