@@ -21,8 +21,10 @@ def load_bot_id():
             print(f"Bot ID set to {BOT_ID}")
     else:
         BOT_ID = input("What is the ID for this bot?\n")
+        print(f"Bot ID set to {BOT_ID}. Attempting to store...")
         with open(PATH_TO_BOT_FILE, "w") as conf:
             conf.write(BOT_ID)
+        print("Bot ID stored!")
 
 def reset_program(driver):
     print("resetting program")
