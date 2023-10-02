@@ -80,9 +80,17 @@ def bet_dice(driver):
     WebDriverWait(driver, 1).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div/div/main/div/div/div[1]/div/div[4]/div/div/div[3]/button[2]'))).click()
     WebDriverWait(driver, 1).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div/div/main/div/div/div[1]/div/div[4]/div/div/div[3]/button'))).click()
     WebDriverWait(driver, 1).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div/div/main/div/div/div[1]/div/div[3]/button/div[2]'))).click()
-    time.sleep(1.5)
+    time.sleep(2)
 
     current_money = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div[1]/header/div/a/div").get_attribute("title")
+
+    URL = "192.168.0.33:5000/add-statistic"
+    PARAMS = {
+        "current_streak": current_streak,
+        "high_score": high_score,
+        "current_bet": amount_of_bets
+    }
+    requests.post(URL, params=PARAMS)
 
     print(current_money)
 
