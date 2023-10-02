@@ -11,6 +11,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 start_time = datetime.now()
+BOT_ID = -1
 
 def reset_program(driver):
     print("resetting program")
@@ -88,6 +89,7 @@ def bet_dice(driver):
 
     URL = "http://94.110.172.3:5000/add-statistic"
     DATA = {
+        "bot_id": BOT_ID,
         "current_streak": current_streak,
         "high_score": high_score,
         "current_bet": amount_of_bets
@@ -129,5 +131,19 @@ if __name__ == "__main__":
     amount_of_bets = 0
     current_streak = 0
     high_score = 0
+
+    art = """
+        /$$$$$$$   /$$$$$$  /$$   /$$ /$$$$$$$   /$$$$$$  /$$$$$$$$
+        | $$__  $$ /$$__  $$| $$  | $$| $$__  $$ /$$__  $$|__  $$__/
+        | $$  \ $$| $$  \__/| $$  | $$| $$  \ $$| $$  \ $$   | $$   
+        | $$$$$$$ | $$      | $$$$$$$$| $$$$$$$ | $$  | $$   | $$   
+        | $$__  $$| $$      | $$__  $$| $$__  $$| $$  | $$   | $$   
+        | $$  \ $$| $$    $$| $$  | $$| $$  \ $$| $$  | $$   | $$   
+        | $$$$$$$/|  $$$$$$/| $$  | $$| $$$$$$$/|  $$$$$$/   | $$   
+        |_______/  \______/ |__/  |__/|_______/  \______/    |__/   
+                                                                    
+    """
+    print(art)
+    BOT_ID = input("What is the ID for this bot?\n")
 
     main()
