@@ -13,6 +13,17 @@ from selenium.webdriver.support import expected_conditions as EC
 start_time = datetime.now()
 BOT_ID = -1
 
+def load_bot_id():
+    PATH_TO_BOT_FILE = "C:/Users/bram/BCH-Bot/env/bot-id.txt"
+    if os.path.exists(PATH_TO_BOT_FILE):
+        with open(PATH_TO_BOT_FILE, "r") as conf:
+            BOT_ID = conf.readlines()[0]
+            print(f"Bot ID set to {BOT_ID}")
+    else:
+        BOT_ID = input("What is the ID for this bot?\n")
+        with open(PATH_TO_BOT_FILE, "w") as conf:
+            conf.write(BOT_ID)
+
 def reset_program(driver):
     print("resetting program")
     driver.delete_all_cookies()
@@ -109,7 +120,7 @@ def bet_dice(driver):
             time.sleep(5)
             current_streak = 0
             refresh_bch(driver=driver)
-    elif current_money == "0.10000000":
+    elif current_streak == 5:
         while True:
             print("Goal Reached!")
             time.sleep(100000000)
@@ -144,6 +155,6 @@ if __name__ == "__main__":
                                                                     
     """
     print(art)
-    BOT_ID = input("What is the ID for this bot?\n")
+    load_bot_id()
 
     main()
