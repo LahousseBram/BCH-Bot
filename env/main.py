@@ -78,7 +78,7 @@ def bet_dice(driver):
     current_streak += 1
     amount_of_bets += 1
 
-    if current_streak == 11:
+    if current_streak == 16:
         while True:
             print("Goal Reached!")
             time.sleep(100000000)
