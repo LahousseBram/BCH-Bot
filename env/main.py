@@ -78,7 +78,7 @@ def bet_dice(driver):
     WebDriverWait(driver, 1).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div/div/main/div/div/div[1]/div/div[4]/div/div/div[3]/button[2]'))).click()
     WebDriverWait(driver, 1).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div/div/main/div/div/div[1]/div/div[4]/div/div/div[3]/button'))).click()
     WebDriverWait(driver, 1).until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div/div/main/div/div/div[1]/div/div[3]/button/div[2]'))).click()
-    time.sleep(0.5)
+    time.sleep(1.5)
 
     current_money = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div[1]/header/div/a/div").get_attribute("title")
 
@@ -109,7 +109,6 @@ def main():
     options = uc.ChromeOptions()
     options.add_argument('--disable-popup-blocking')
     options.add_argument('--incognito')
-    options.add_argument('--start-maximized')
 
     driver = uc.Chrome(options=options)
     open_bch(driver)
