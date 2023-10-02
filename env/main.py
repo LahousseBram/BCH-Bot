@@ -33,7 +33,7 @@ def reset_program(driver):
     driver.delete_all_cookies()
     driver.close()
     driver.quit()
-    subprocess.run("py test.py")
+    subprocess.run("py main.py")
 
 def refresh_bch(driver, wait=False):
     if wait:
