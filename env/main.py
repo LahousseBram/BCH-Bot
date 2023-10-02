@@ -5,6 +5,7 @@ import os
 from datetime import datetime
 import requests
 import sys
+import subprocess
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -15,7 +16,7 @@ BOT_ID = -1
 
 def load_bot_id():
     global BOT_ID
-    PATH_TO_BOT_FILE = "C:/Users/bram/BCH-Bot/env/bot-id.txt"
+    PATH_TO_BOT_FILE = "C:/Users/lahou/bot-id.txt"
     if os.path.exists(PATH_TO_BOT_FILE):
         with open(PATH_TO_BOT_FILE, "r") as conf:
             BOT_ID = conf.readlines()[0]
@@ -32,6 +33,7 @@ def reset_program(driver):
     driver.delete_all_cookies()
     driver.close()
     driver.quit()
+    subprocess.run("py test.py")
 
 def refresh_bch(driver, wait=False):
     if wait:
@@ -159,5 +161,4 @@ if __name__ == "__main__":
     print(art)
     load_bot_id()
 
-    while True:
-        main()
+    main()
