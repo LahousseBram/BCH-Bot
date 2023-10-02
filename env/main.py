@@ -84,7 +84,7 @@ def bet_dice(driver):
 
     current_money = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div[1]/header/div/a/div").get_attribute("title")
 
-    URL = "94.110.172.3:5000/add-statistic"
+    URL = "http://94.110.172.3:5000/add-statistic"
     PARAMS = {
         "current_streak": current_streak,
         "high_score": high_score,
