@@ -25,7 +25,7 @@ def refresh_bch(driver, wait=False):
     if wait:
         time.sleep(5)
     driver.execute_script("localStorage.clear()")
-    driver.get("https://bch.games")
+    driver.get("https://bch.games/play/sBNy13Am")
     open_dice(driver=driver)
 
 def hard_reset(driver):
@@ -42,7 +42,7 @@ def hard_reset(driver):
 def open_bch(driver):
     driver.get('https://google.com')
     time.sleep(1)
-    driver.execute_script("window.open('https://bch.games','_blank')")
+    driver.execute_script("window.open('https://bch.games/play/sBNy13Am','_blank')")
     time.sleep(5)
     driver.switch_to.window(driver.window_handles[1])
     time.sleep(2)
