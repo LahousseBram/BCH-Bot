@@ -16,7 +16,7 @@ BOT_ID = -1
 
 def load_bot_id():
     global BOT_ID
-    PATH_TO_BOT_FILE = "C:/Users/lahou/bot-id.txt"
+    PATH_TO_BOT_FILE = "C:/Users/bram/BCH-Bot/env/bot-id.txt"
     if os.path.exists(PATH_TO_BOT_FILE):
         with open(PATH_TO_BOT_FILE, "r") as conf:
             BOT_ID = conf.readlines()[0]
